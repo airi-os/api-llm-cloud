@@ -1,0 +1,14 @@
+name = "llm-proxy-router"
+main = "src/router.ts"
+compatibility_date = "2024-12-01"
+
+[vars]
+WORKER_ROLE = "router"
+
+[[services]]
+binding = "PROXY_0"
+service = "llm-proxy-0"
+
+[[services]]
+binding = "PROXY_1"
+service = "llm-proxy-1"
