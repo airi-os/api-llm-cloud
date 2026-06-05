@@ -6,10 +6,11 @@
     "test": "vitest run --passWithNoTests",
     "type-check": "tsc --noEmit",
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "tsx scripts/deploy.ts"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260605.1",
+    "tsx": "^4.19.0",
     "typescript": "^6.0.3",
     "vitest": "^4.1.8",
     "wrangler": "^4.98.0"

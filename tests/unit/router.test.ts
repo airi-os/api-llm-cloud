@@ -13,6 +13,7 @@ function makeProxyBinding(response?: Response) {
 function makeEnv(overrides: Record<string, unknown> = {}) {
   return {
     AUTH_KEY: "test-auth-key",
+    INTERNAL_AUTH_SECRET: "test-internal-secret-32-chars-long!!",
     PROXY_COUNT: "3",
     PROXY_1: makeProxyBinding(),
     PROXY_2: makeProxyBinding(),
@@ -107,7 +108,7 @@ describe("handleRouterRequest", () => {
 
     const proxy = env.PROXY_2 as { fetch: ReturnType<typeof vi.fn> };
     const forwarded = proxy.fetch.mock.calls[0][0] as Request;
-    expect(forwarded.headers.get("X-Internal-Auth")).toBe("test-auth-key");
+    expect(forwarded.headers.get("X-Internal-Auth")).toBe("test-internal-secret-32-chars-long!!");
     expect(forwarded.headers.get("X-Target-URL")).toBe(
       "https://api.openai.com/v1/chat/completions",
     );

@@ -2,6 +2,8 @@ name = "llm-proxy-router"
 main = "src/worker.ts"
 compatibility_date = "2024-12-01"
 
+routes = [{ pattern = "router.example.com", custom_domain = true }]
+
 [vars]
 WORKER_ROLE = "router"
 AUTH_KEY = "change-me-in-production"
@@ -19,34 +21,3 @@ service = "llm-proxy-02"
 [[services]]
 binding = "PROXY_3"
 service = "llm-proxy-03"
-
-# --- Proxy worker configurations ---
-# Deploy each proxy with: npx wrangler deploy --config <file>
-# Adjust PROXY_INDEX and service name per instance.
-#
-# wrangler.proxy-01.toml:
-#   name = "llm-proxy-01"
-#   main = "src/worker.ts"
-#   compatibility_date = "2024-12-01"
-#   [vars]
-#     WORKER_ROLE = "proxy"
-#     PROXY_INDEX = "1"
-#     INTERNAL_AUTH_SECRET = "change-me-in-production"
-#
-# wrangler.proxy-02.toml:
-#   name = "llm-proxy-02"
-#   main = "src/worker.ts"
-#   compatibility_date = "2024-12-01"
-#   [vars]
-#     WORKER_ROLE = "proxy"
-#     PROXY_INDEX = "2"
-#     INTERNAL_AUTH_SECRET = "change-me-in-production"
-#
-# wrangler.proxy-03.toml:
-#   name = "llm-proxy-03"
-#   main = "src/worker.ts"
-#   compatibility_date = "2024-12-01"
-#   [vars]
-#     WORKER_ROLE = "proxy"
-#     PROXY_INDEX = "3"
-#     INTERNAL_AUTH_SECRET = "change-me-in-production"

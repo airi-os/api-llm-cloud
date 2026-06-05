@@ -67,7 +67,7 @@ export async function handleRouterRequest(
     const value = request.headers.get(name);
     if (value) headers.set(name, value);
   }
-  headers.set("X-Internal-Auth", env.AUTH_KEY);
+  headers.set("X-Internal-Auth", env.INTERNAL_AUTH_SECRET as string);
   headers.set("X-Target-URL", targetUrl);
   headers.set("X-Original-Method", method);
 
