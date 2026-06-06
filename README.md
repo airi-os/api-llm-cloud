@@ -75,6 +75,39 @@ Deploys 3 proxy workers + 1 router worker to Cloudflare. Configs are generated i
 
 Adjust `PROXY_COUNT` in `.env` to change the number of proxy workers.
 
+
+## Topology Discovery
+
+The router worker exposes a versioned internal endpoint for topology discovery by [freellmapi-alpha](https://github.com/tashfeenahmed/freellmapi):
+
+```
+GET /internal/v1/topology
+Header: X-Internal-Auth: <INTERNAL_AUTH_SECRET>
+```
+
+**Response:**
+
+```json
+{
+  "schemaVersion": 1,
+  "topologyId": "sha256:...",
+  "topologyGeneratedAt": 1717640000,
+  "workerCount": 3,
+  "proxies": [
+    { "id": 0, "name": "llm-proxy-00", "status": "active" },
+    { "id": 1, "name": "llm-proxy-01", "status": "active" },
+    { "id": 2, "name": "llm-proxy-02", "status": "active" }
+  ]
+}
+```
+
+- `topologyId`: Deterministic SHA-256 hash of topology-defining fields (worker names, ordering, count, schema version)
+- `topologyGeneratedAt`: Deploy-time timestamp (epoch seconds)
+- `workerCount`: Number of deployed proxy workers
+- `proxies[]`: Each worker with `id`, `name`, and `status`
+
+The response is generated at deploy time and embedded as a static constant — no runtime computation, no env reads, no filesystem access.
+
 ## Usage with LM Studio / OpenAI-compatible clients
 
 Set the base URL to:
@@ -110,6 +143,8 @@ src/
   fake-ip.ts    SHA-256 based deterministic IP generation
   base64url.ts  URL-safe base64 encode/decode
   http.ts       Response helpers (CORS, error JSON)
+  generated/
+    topology.ts  Generated immutable TOPOLOGY constant (by deploy.ts)
 scripts/
   deploy.ts     Auto-generates TOML configs and deploys all workers
 ```

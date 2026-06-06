@@ -1,10 +1,11 @@
 import { decodeBase64Url } from "./base64url";
-import { corsResponse, errorResponse, filterPassthroughHeaders } from "./http";
+import { corsResponse, errorResponse, filterPassthroughHeaders, jsonResponse } from "./http";
 import { publicPage } from "./public";
+import { TOPOLOGY } from "./generated/topology";
 
 export async function handleRouterRequest(
   request: Request,
-  env: { AUTH_KEY: string; PROXY_COUNT: string; ROUTER_DOMAIN: string; [key: string]: unknown },
+  env: { AUTH_KEY: string; PROXY_COUNT: string; ROUTER_DOMAIN: string; INTERNAL_AUTH_SECRET: string; [key: string]: unknown },
   _ctx: ExecutionContext,
 ): Promise<Response> {
   if (request.method === "OPTIONS") {
@@ -12,6 +13,16 @@ export async function handleRouterRequest(
   }
 
   const url = new URL(request.url);
+
+  // Internal topology endpoint (before auth check for client requests)
+  if (request.method === "GET" && url.pathname === "/internal/v1/topology") {
+    const authHeader = request.headers.get("X-Internal-Auth");
+    if (authHeader !== env.INTERNAL_AUTH_SECRET) {
+      return errorResponse("Unauthorized", 401);
+    }
+    return jsonResponse(TOPOLOGY);
+  }
+
   const segments = url.pathname.split("/");
 
   const pass = segments[1];
