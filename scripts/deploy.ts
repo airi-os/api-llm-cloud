@@ -111,6 +111,7 @@ function generateProxyToml(index: number, internalSecret: string): string {
 		name,
 		main: "../src/worker.ts",
 		compatibility_date: "2024-12-01",
+		placement: { mode: "off" },
 		vars: {
 			WORKER_ROLE: "proxy",
 			PROXY_INDEX: String(index),
@@ -134,6 +135,7 @@ function generateRouterToml(proxyCount: number, internalSecret: string, authKey:
 		name: "llm-proxy-router",
 		main: "../src/worker.ts",
 		compatibility_date: "2024-12-01",
+		placement: { mode: "smart" },
 		routes: [{ pattern: routerDomain, custom_domain: true }],
 		vars: {
 			WORKER_ROLE: "router",
