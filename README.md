@@ -1,5 +1,5 @@
 # airiOS - API Cloud Layer
-<img width="384" height="512" alt="airiOS mascot" src="https://github.com/user-attachments/assets/c1394148-be39-44a0-9c26-a6962e951321" />
+<img width="256" height="384" alt="airiOS mascot" src="https://github.com/user-attachments/assets/c1394148-be39-44a0-9c26-a6962e951321" />
 
 ## How it works
 
