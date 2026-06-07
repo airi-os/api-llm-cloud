@@ -1,5 +1,7 @@
 <div align=center>
-<h1> airiOS - LLM API Cloud Layer </h1>
+  
+# [airiOS](https://github.com/airi-os/core) - LLM API Cloud Layer
+
 <br>
 <img width="256" height="384" alt="airiOS mascot" src="https://github.com/user-attachments/assets/c1394148-be39-44a0-9c26-a6962e951321" />
 <br>
