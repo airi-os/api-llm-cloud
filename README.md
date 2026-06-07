@@ -86,7 +86,7 @@ Adjust `PROXY_COUNT` in `.env` to change the number of proxy workers.
 
 ## Topology Discovery
 
-The router worker exposes a versioned internal endpoint for topology discovery by [freellmapi-alpha](https://github.com/tashfeenahmed/freellmapi):
+The router worker exposes a versioned internal endpoint for topology discovery by [airiOS Localhost LLM API Layer](https://github.com/airi-os/api-llm-localhost):
 
 ```
 GET /internal/v1/topology
