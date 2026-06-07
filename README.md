@@ -3,7 +3,6 @@
 <br>
 <img width="256" height="384" alt="airiOS mascot" src="https://github.com/user-attachments/assets/c1394148-be39-44a0-9c26-a6962e951321" />
 <br>
-<br>
 <a href="https://app.deepsource.com/gh/airi-os/api-llm-cloud/" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://app.deepsource.com/gh/airi-os/api-llm-cloud.svg/?label=code+coverage&show_trend=true&token=c4KmjW5MkxAjVRTm0xZ9utwK"/></a>
 <a href="https://app.deepsource.com/gh/airi-os/api-llm-cloud/" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://app.deepsource.com/gh/airi-os/api-llm-cloud.svg/?label=active+issues&show_trend=true&token=c4KmjW5MkxAjVRTm0xZ9utwK"/></a>
 <a href="https://app.deepsource.com/gh/airi-os/api-llm-cloud/" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://app.deepsource.com/gh/airi-os/api-llm-cloud.svg/?label=resolved+issues&show_trend=true&token=c4KmjW5MkxAjVRTm0xZ9utwK"/></a>
